@@ -1,269 +1,200 @@
-🎬 TEXT2CINEMA
-�
+<style>
+  .futuristic-body {
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a0033 100%);
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+  }
+  .hero-container {
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+  }
+  .hero-title {
+    font-size: 4em;
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #ffff00);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    margin: 0;
+    letter-spacing: 0.1em;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff; }
+    to { text-shadow: 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #00ffff, 0 0 50px #ff00ff; }
+  }
+  .hero-subtitle {
+    font-size: 1.5em;
+    color: #00ffff;
+    margin: 20px 0;
+    opacity: 0.9;
+  }
+  .badge {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: white;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+  }
+  .badge:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.4);
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+  }
+  .badge:hover::before { left: 100%; }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+  }
+  .tech-card {
+    background: rgba(10, 10, 20, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .tech-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+    opacity: 0;
+  }
+  .tech-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: #00ffff;
+    box-shadow: 0 20px 40px rgba(0,255,255,0.3), inset 0 0 20px rgba(0,255,255,0.1);
+  }
+  .tech-card:hover::before {
+    opacity: 1;
+    top: 0;
+    left: 0;
+  }
+  .pipeline-svg {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(0,255,255,0.5));
+  }
+  .glow-code {
+    background: rgba(0,0,0,0.7);
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-code::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .tree-node {
+    margin-left: 20px;
+  }
+  details summary {
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(0,255,255,0.1);
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background 0.3s;
+  }
+  details[open] summary {
+    background: rgba(255,0,255,0.2);
+    box-shadow: 0 0 10px rgba(255,0,255,0.3);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(10,10,20,0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,255,255,0.2);
+  }
+  th {
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: #00ffff;
+  }
+  .footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #00ffff;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+</style>
 
-�
+<div class="futuristic-body">
 
-�
+<div class="hero-container">
+  <h1 class="hero-title">TEXT2CINEMA</h1>
+  <p class="hero-subtitle">Transforming Words into Cinematic Simulations</p>
+  <div>
+    <span class="badge">C++17</span>
+    <span class="badge">OpenGL</span>
+    <span class="badge">Bullet Physics</span>
+    <span class="badge">FFmpeg</span>
+    <span class="badge">CMake</span>
+    <span class="badge">vcpkg</span>
+  </div>
+</div>
 
+## Watch Text Become Cinema
 
-TEXT2CINEMA
-�
+Turn natural language into stunning cinematic videos. Here's a demo example:
 
-�
-
-�
-Transforming Words into Cinematic Simulations
-
-�
-
-�
-
-�
-￼ ￼ ￼ ￼ ￼ ￼
-�
-
-🌌 What is Text2Cinema
-Text2Cinema is a procedural cinematic engine that converts natural language into fully simulated cinematic scenes.
-Instead of using prebuilt assets, everything is generated mathematically:
-• procedural environments
-• physics-based simulations
-• particle systems
-• cinematic camera movements
-• GPU rendering
-• frame recording and video export
-Every scene is generated from pure simulation code.
-🎥 Cinematic Demo
-�
-
-�
-￼
-�
-
-Example Prompt
-Bash
-Copy code
+<div class="glow-code">
+```bash
 text2cinema.exe "A glowing meteor falls from the sky and explodes into sparks when it hits the ocean"
-Generated Output
-Copy code
-
-generated/output_video.mp4
-generated/GeneratedScene.cpp
-🧠 Procedural Engine Pipeline
-�
-
-�
-
-�
-Text Input
-�
-Parser
-�
-Scene
-�
-Physics
-�
-Renderer
-�
-Video Export
-�
-
-�
-
-Pipeline Flow
-Copy code
-
-Text Prompt
-   ↓
-Natural Language Parser
-   ↓
-Procedural Scene Generator
-   ↓
-Physics Simulation
-   ↓
-Particle Effects
-   ↓
-OpenGL Renderer
-   ↓
-Frame Recorder
-   ↓
-FFmpeg Encoder
-   ↓
-MP4 Output
-🧩 Engine Architecture
-�
-Parser Layer
-Copy code
-
-src/parser/TextParser.h
-src/parser/TextParser.cpp
-Converts natural language into structured scene instructions.
-�
-
-�
-Scene Generation
-Copy code
-
-src/scene/Scene.cpp
-src/scene/ObjectFactory.cpp
-Responsible for building the procedural environment.
-�
-
-�
-Simulation Layer
-Copy code
-
-src/simulation/PhysicsEngine.cpp
-src/simulation/ParticleSystem.cpp
-Handles:
-• gravity
-• collisions
-• explosions
-• particle interactions
-�
-
-�
-Rendering Layer
-Copy code
-
-src/rendering/Renderer.cpp
-src/rendering/ShaderManager.cpp
-OpenGL based cinematic rendering pipeline.
-�
-
-�
-Export Layer
-Copy code
-
-src/export/FrameRecorder.cpp
-src/export/VideoExporter.cpp
-Records rendered frames and converts them into MP4 using FFmpeg.
-�
-
-📂 Repository Structure
-Copy code
-
-Text2Cinema
-│
-├── src
-│   ├── core
-│   ├── parser
-│   ├── scene
-│   ├── simulation
-│   ├── rendering
-│   ├── export
-│   ├── utils
-│   └── generated
-│
-├── CMakeLists.txt
-└── main.cpp
-⚙️ Technology Showcase
-Technology
-Description
-OpenGL Renderer
-GPU accelerated cinematic rendering
-Bullet Physics
-Real-time physics simulation
-Particle Engine
-Sparks, explosions and smoke
-Procedural Environment
-Oceans, terrain and skies
-Cinematic Camera
-Dynamic cinematic camera tracking
-FFmpeg Encoder
-Video export to MP4
-🛠 Installation (Windows)
-Step 1 — Install Tools
-Install:
-• Visual Studio Build Tools 2022
-• CMake
-• vcpkg
-Step 2 — Clone Repository
-Bash
-Copy code
-git clone https://github.com/metadore/Text2Cinema
-cd Text2Cinema
-Step 3 — Build Engine
-Bash
-Copy code
-mkdir build
-cd build
-
-cmake ..
-cmake --build . --config Release
-🎬 Example Scene Prompts
-Meteor Impact
-Copy code
-
-A meteor falls from space and explodes when it hits the ocean
-UFO Landing
-Copy code
-
-A glowing UFO slowly lands in a desert at night
-Sky Explosion
-Copy code
-
-A fireball explodes in the sky with sparks
-Asteroid Impact
-Copy code
-
-An asteroid crashes into rocky terrain creating shockwaves
-Ocean Storm
-Copy code
-
-A violent storm forming over a dark ocean
-🧬 Generated Code System
-Each prompt automatically generates a procedural C++ scene file:
-Copy code
-
-GeneratedScene.cpp
-This file contains:
-• object creation
-• particle effects
-• physics simulation code
-• camera animation
-This allows developers to inspect and modify the generated scene logic.
-📊 Engine Metrics
-Metric
-Value
-Source files
-30+
-Lines of code
-4000+
-Libraries
-8
-Compiler errors fixed
-20+
-Linker errors fixed
-40+
-Frames rendered
-180
-Output format
-MP4
-🧠 Philosophy
-Text2Cinema is built on a fundamental principle:
-Every pixel must be generated through simulation.
-No textures.
-No models.
-No assets.
-Everything is created through:
-• mathematics
-• physics simulation
-• procedural algorithms
-• GPU rendering
-🤝 Contributing
-Developers are welcome to contribute.
-Possible improvements:
-• new scene objects
-• improved natural language parsing
-• advanced particle effects
-• rendering optimizations
-• new procedural environments
-🌠 From Words to Worlds
-�
-
-TEXT2CINEMA
-Transforming imagination into cinematic reality.
-�
-
-⭐ Star the Repository
-If you find this project interesting, consider starring the repository.
