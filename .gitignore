@@ -1,0 +1,8 @@
+build/
+generated/frames/
+generated/output_video.mp4
+*.user
+.vs/
+*.exe
+*.obj
+*.pdb
