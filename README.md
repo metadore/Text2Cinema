@@ -29,7 +29,7 @@
 
 ```bash
 text2cinema.exe "A glowing meteor falls from the sky and explodes into sparks when it hits the ocean"
-<p align="center"> <img src="https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif" width="600"/> </p>
+
 ✨ Features
 <p align="center">
 
@@ -65,10 +65,10 @@ text2cinema/
 │   ├── renderer/
 │   ├── physics/
 │   ├── parser/
-│── assets/
-│── shaders/
-│── output/
+│── generated/
 │── CMakeLists.txt
+│── .gitignore/
+│── third_party
 ⚙️ Installation
 git clone https://github.com/your-username/text2cinema.git
 cd text2cinema
@@ -79,8 +79,7 @@ cmake ..
 cmake --build .
 ▶️ Usage
 text2cinema.exe "A futuristic city with flying cars at sunset"
-🌌 Output
-<p align="center"> <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="600"/> </p>
+
 🔮 Future Vision
 
 🤖 AI-powered scene understanding
@@ -97,4 +96,4 @@ Pull requests are welcome!
 Let’s build the future of cinematic AI 🎬
 
 🌟 Final Thought
-<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=4000&color=FF00FF&center=true&vCenter=true&width=600&lines=From+Imagination+→+Simulation;You+Describe.+We+Create." /> </p> ```
+
