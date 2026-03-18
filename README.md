@@ -61,14 +61,21 @@ FFmpeg Encoder
 🧱 Project Structure
 text2cinema/
 │── src/
-│   ├── core/
-│   ├── renderer/
-│   ├── physics/
-│   ├── parser/
+    ├── core/
+    ├── rendering/
+    ├── export/
+    ├── generated/
+    ├── scene/
+    ├── simulation/
+    ├── utils/
+    ├── physics/
+    ├── parser/
+    ├── main.cpp
 │── generated/
+    ├── Generated.cpp
 │── CMakeLists.txt
 │── .gitignore/
-│── third_party
+│── third_party/
 ⚙️ Installation
 git clone https://github.com/your-username/text2cinema.git
 cd text2cinema
